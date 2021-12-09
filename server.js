@@ -26,6 +26,8 @@ function mainMenu(){
                 return addDepartment();
             case 'Add Role':
                 return addRole();
+            case 'Add Employee':
+                return addEmployee();
         }
     })
 }
@@ -101,9 +103,9 @@ function addRole(){
 function addEmployee(){
     db.viewAllRoles()
     .then(([rows]) => {
-     const roleChoices = rows.map(({ first_name, name }) => ({
-        name: name,
-        value: id
+     const roleChoices = rows.map(({ id, title }) => ({
+        name: title,
+        value: id 
       }));
     inquirer.prompt([
         {
@@ -125,9 +127,10 @@ function addEmployee(){
     ])
     .then(res=>{
         db.addEmployee(res)
-        .then(()=>console.log(`We added ${res.name} department`))
+        .then(()=>console.log(`We added ${res.first_name.last_name} to the database`))
         .then(() => mainMenu());
     })
+})
 }
 
 mainMenu();

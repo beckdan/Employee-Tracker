@@ -37,10 +37,14 @@ class DB {
         return this.connection.promise().query(
             
             `SELECT
-                , 
+                employee.id,
+                employee.first_name,
+                employee.last_name,
                 department.name
             FROM 
-                department`
+                employee
+            LEFT JOIN
+                department on employee`
             
             
         )

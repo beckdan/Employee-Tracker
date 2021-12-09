@@ -11,22 +11,23 @@ VALUES
 INSERT INTO role
     (title, salary, department_id)
 VALUES
-    ('Targaryen Queen', 750000, 1),
-    ('Targaryen King', 500000, 1),
-    ('Targaryen Knight', 50000, 1),
-    ('Lannister King', 1000000, 2),
-    ('Lannister Queen', 1000000, 2),
-    ('Lannister Knight', 60000, 2),
-    ('Stark King', 250000, 3),
-    ('Stark Queen', 250000, 3),
-    ('Stark Knight', 50000, 3);
+    ('Sales Lead', 100000, 1),
+    ('Salesperson', 90000, 2),
+    ('Lead Engineer', 150000, 1),
+    ('Junior Developer', 120000, 2),
+    ('Account Manager', 200000, 1),
+    ('Accountant', 120000, 2),
+    ('Legal Team Lead', 200000, 1),
+    ('Lawyer', 150000, 2),
+   
+    
 
 INSERT INTO employee
     (first_name, last_name, role_id, manager_id)
 
 VALUES  
-    ('Daenerys', 'Targaryen', 1, NULL),
-    ('Rhaehgar', 'Targaryen', 2, 1),
+    ('Dwight', 'Schrute', 1, NULL),
+    ('Jim', 'Halpert', 2, 1),
     ('George', 'Targaryen', 3, 1),
     ('Tywin', 'Lannister', 4, NULL),
     ('Joanna', 'Lannister', 5, 4),

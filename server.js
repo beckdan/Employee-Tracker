@@ -11,8 +11,10 @@ function mainMenu(){
             choices: [
                 'View All Departments', 
                 'View All Roles',
+                'View All Employees',
                 'Add Department',
-                'Add Role'
+                'Add Role',
+                'Add Employee'
             ]
         }
     ])
@@ -22,6 +24,8 @@ function mainMenu(){
                 return showAllDepartments();
             case 'View All Roles':
                 return showAllRoles();
+            case 'View All Employees':
+                return showAllEmployees();
             case 'Add Department':
                 return addDepartment();
             case 'Add Role':
@@ -44,6 +48,16 @@ function showAllDepartments(){
 
 function showAllRoles(){
     db.viewAllRoles()
+        .then(([rows])=>{
+            console.log('\n')
+            console.table(rows)
+            console.log('\n')
+        })
+    mainMenu();
+}
+
+function showAllEmployees(){
+    db.viewAllEmployees()
         .then(([rows])=>{
             console.log('\n')
             console.table(rows)
@@ -103,8 +117,15 @@ function addRole(){
 function addEmployee(){
     db.viewAllRoles()
     .then(([rows]) => {
-     const roleChoices = rows.map(({ id, title }) => ({
-        name: title,
+     const roleChoices = rows.map(({ id, name }) => ({
+        name: name,
+        value: id 
+      }));
+      
+    db.viewAllEmployees()
+    .then(([rows]) => {
+     const managerChoices = rows.map(({ id, name }) => ({
+        name: name,
         value: id 
       }));
     inquirer.prompt([
@@ -123,14 +144,21 @@ function addEmployee(){
             name: 'role_id',
             message: "What is the employee's role?",
                 choices: roleChoices
-        }
+        },
+        {
+            type: 'list',
+            name: 'manager_id',
+            message: "Who is the employee's manager?",
+                choices: managerChoices
+        },
     ])
     .then(res=>{
         db.addEmployee(res)
-        .then(()=>console.log(`We added ${res.first_name.last_name} to the database`))
+        .then(()=>console.log(`We added ${res.first_name} to the database`))
         .then(() => mainMenu());
     })
 })
-}
+})};
+
 
 mainMenu();

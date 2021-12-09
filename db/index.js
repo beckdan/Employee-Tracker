@@ -13,8 +13,6 @@ class DB {
                 department.name
             FROM 
                 department`
-            
-            
         )
     }
     viewAllRoles(){
@@ -28,9 +26,7 @@ class DB {
             FROM 
                 role
             LEFT JOIN
-                department ON role.department_id = department.id`
-            
-            
+                department ON role.department_id = department.id`   
         )
     }
     viewAllEmployees(){
@@ -40,13 +36,13 @@ class DB {
                 employee.id,
                 employee.first_name,
                 employee.last_name,
-                department.name
+                role.title, 
+                manager_id
             FROM 
                 employee
-            LEFT JOIN
-                department on employee`
-            
-            
+            LEFT JOIN 
+                role ON employee.role_id = role.title`
+                
         )
     }
 
@@ -57,8 +53,6 @@ class DB {
                 department
             SET
                 ?`, department
-            
-            
         )
     }
 
@@ -81,16 +75,8 @@ class DB {
                 employee
             SET
                 ?`, employee
-            
-            
         )
     }
-
-
-
-
-
-
 }
 
 module.exports = new DB(connection)

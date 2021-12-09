@@ -3,9 +3,10 @@ use employee_db;
 INSERT INTO department
     (name)
 VALUES
-    ('Targaryen'),
-    ('Lannister'),
-    ('Stark');
+    ('Engineering'),
+    ('Finance'),
+    ('Legal');
+    ('Sales');
 
 INSERT INTO role
     (title, salary, department_id)

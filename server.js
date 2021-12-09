@@ -98,4 +98,36 @@ function addRole(){
 })
 }
 
+function addEmployee(){
+    db.viewAllRoles()
+    .then(([rows]) => {
+     const roleChoices = rows.map(({ first_name, name }) => ({
+        name: name,
+        value: id
+      }));
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'first_name',
+            message: "What is the employee's first name?"
+        },
+        {
+            type: 'input',
+            name: 'last_name',
+            message: "What is the employee's last name?"
+        },
+        {
+            type: 'list',
+            name: 'role_id',
+            message: "What is the employee's role?",
+                choices: roleChoices
+        }
+    ])
+    .then(res=>{
+        db.addEmployee(res)
+        .then(()=>console.log(`We added ${res.name} department`))
+        .then(() => mainMenu());
+    })
+}
+
 mainMenu();

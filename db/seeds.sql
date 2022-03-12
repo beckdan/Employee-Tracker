@@ -11,14 +11,14 @@ VALUES
 INSERT INTO role
     (title, salary, department_id)
 VALUES
-    ('Sales Lead', 100000, 1),
-    ('Salesperson', 90000, 2),
+    ('Sales Lead', 100000, 4),
+    ('Salesperson', 90000, 4),
     ('Lead Engineer', 150000, 1),
-    ('Junior Developer', 120000, 2),
-    ('Account Manager', 200000, 1),
+    ('Junior Developer', 120000, 1),
+    ('Account Manager', 200000, 4),
     ('Accountant', 120000, 2),
     ('Legal Team Lead', 200000, 1),
-    ('Lawyer', 150000, 2),
+    ('Lawyer', 150000, 3),
    
     
 

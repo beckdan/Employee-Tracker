@@ -2,6 +2,13 @@ const db = require('./db')
 require('console.table')
 const inquirer = require('inquirer')
 
+init();
+
+
+function init() {
+    mainMenu();
+}
+
 function mainMenu(){
     inquirer.prompt([
         {
